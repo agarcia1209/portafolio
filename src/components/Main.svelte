@@ -6,6 +6,10 @@
     { name: "Capstone Project", icon: "fa-solid fa-book" },
     { name: "Servicing System", icon: "fa-solid fa-folder-open" },
   ];
+  let showModal = false;
+  const toggleModal = () => {
+    showModal = !showModal;
+  };
 
   let benefits = [
     {
@@ -44,17 +48,16 @@
         (SvelteKit), Flutter, TailwindCss, Node.js & Next.js, Firebase/FireStore,
         Supabase, SQL, React, Bootstrap, and Blazor
       </p>
-      <a
+      <button
+        on:click={toggleModal}
         class="blueShadow mx-auto lg:mr-auto text-base sm:text-lg md:text-lg poppins relative overflow-hidden px-6 py-3 group rounded-full
             bg-white text-slate-950 cursor-pointer"
-        href="https://x.com/elBulletzzz"
-        target="_blank"
       >
         <div
           class="absolute top-0 right-full w-full h-full bg-violet-400 opacity-20 group-hover:translate-x-full z-0 duration-200"
         ></div>
         <h4 class="relative z-9">Get in touch &rarr;</h4>
-      </a>
+      </button>
     </div>
     <div class="relative shadow-2xl grid place-items-center">
       <img
@@ -157,14 +160,16 @@
         </div>
       {/each}
     </div>
-    <h5 class="mx-auto text-2xl sm:text-3xl md:text-5xl">The <span class="text-violet-400">Complete</span> Package:</h5>
+    <h5 class="mx-auto text-2xl sm:text-3xl md:text-5xl">
+      The <span class="text-violet-400">Complete</span> Package:
+    </h5>
     <div
       class="flex flex-col overflow-x-scroll gap-10 max-w-[800px] mx-auto w-full"
     >
       <table class="bg-white text-slate-700 rounded text-center">
         <thead class="border-b border-solid border-slate-200">
           <tr class="">
-            <th/>
+            <th />
             <th class="whitespace-nowrap p-2 px-4">Candidate #1</th>
             <th class="whitespace-nowrap p-2 px-4">Candidate #2</th>
             <th class="whitespace-nowrap p-2 px-4">Candidate #3</th>
@@ -218,7 +223,46 @@
       </table>
     </div>
     <div class="mx-auto -mt-12 italic sm:hidden opacity-50">
-        <p>Scroll to see more &rarr;</p>
+      <p>Scroll to see more &rarr;</p>
     </div>
   </section>
 </main>
+
+{#if showModal}
+  <div
+    class="fixed inset-0 flex items-center justify-center bg-black/60 z-50"
+    on:click={toggleModal}
+  >
+    <div
+      class="bg-white text-black p-6 rounded-lg shadow-xl relative w-80 max-w-full"
+      on:click|stopPropagation
+    >
+      <button
+        class="absolute top-2 right-2 text-gray-500 hover:text-black text-lg"
+        on:click={toggleModal}
+        aria-label="Close"
+      >
+        ×
+      </button>
+      <h2 class="text-xl font-semibold mb-4">Contact Me</h2>
+      <p>
+        <strong>Email:</strong>
+        <a
+          href="mailto:andresgarcia282@gmail.com"
+          class="text-violet-600 underline hover:text-violet-800"
+        >
+          andresgarcia282@gmail.com
+        </a>
+      </p>
+      <p class="mt-2">
+        <strong>Phone:</strong>
+        <a
+          href="tel:+15879369900"
+          class="text-violet-600 underline hover:text-violet-800"
+        >
+          +1 (587) 936-9900
+        </a>
+      </p>
+    </div>
+  </div>
+{/if}
